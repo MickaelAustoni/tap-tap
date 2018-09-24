@@ -18,9 +18,9 @@ export default class HomeScreen extends React.Component {
 
     constructor(props) {
         super(props);
+        this.pad   = 3;
         this.state = {
             counter: '0000',
-            pad: 3,
             disabledButton: true
         };
     }
@@ -54,9 +54,9 @@ export default class HomeScreen extends React.Component {
 
     onPressCount = () => {
 
-        let count       = parseInt(this.state.counter) + 1;
-        let countLength = count.toString().length;
-        let repeat      = (this.state.pad - countLength + 1 >= 0) ? this.state.pad - countLength + 1 : 0;
+        const count       = parseInt(this.state.counter) + 1;
+        const countLength = count.toString().length;
+        const repeat      = (this.pad - countLength + 1 >= 0) ? this.pad - countLength + 1 : 0;
 
         this.setState({
             counter: '0'.repeat(repeat) + count,

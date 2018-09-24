@@ -1,5 +1,5 @@
 {
-  "name": "my-new-project",
+  "name": "cand",
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "scripts": {
@@ -17,6 +17,7 @@
     "expo": "^30.0.1",
     "react": "16.5.2",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
+    "react-native-swipe-list-view": "^1.3.1",
     "react-navigation": "^2.16.0"
   },
   "devDependencies": {
