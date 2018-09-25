@@ -45,7 +45,7 @@ HomeStack.navigationOptions = {
 
 
 HistoryStack.navigationOptions = {
-    tabBarLabel: 'History',
+    tabBarLabel: 'My counter',
     tabBarIcon: ({focused}) => (
         <TabBarIcon
             focused={focused}

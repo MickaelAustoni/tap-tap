@@ -1,6 +1,8 @@
 import React from 'react';
 import {DigitText} from '../components/StyledText';
 import Colors from "../constants/Colors";
+import ButtonIcon from "../components/ButtonIcon";
+import DialogInput from "react-native-dialog-input";
 import {
     Alert,
     AsyncStorage,
@@ -10,8 +12,6 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
-import ButtonIcon from "../components/ButtonIcon";
-import DialogInput from "react-native-dialog-input";
 
 export default class HomeScreen extends React.Component {
     static navigationOptions = {
@@ -26,6 +26,10 @@ export default class HomeScreen extends React.Component {
             disabledButton: true,
             isDialogSave: false
         };
+
+        /*        AsyncStorage.setItem('counters', '').then(() => {
+         console.log('reset data');
+         });*/
     }
 
     showDialogReset = () => {

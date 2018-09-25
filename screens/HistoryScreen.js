@@ -1,9 +1,9 @@
 import React from 'react';
-import {AsyncStorage, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {SwipeListView} from 'react-native-swipe-list-view';
 import Colors from "../constants/Colors";
 import {DigitText} from "../components/StyledText";
 import {Icon} from "expo";
+import {AsyncStorage, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 export default class HistoryScreen extends React.Component {
     static navigationOptions = {
@@ -24,18 +24,31 @@ export default class HistoryScreen extends React.Component {
             listViewData: []
         };
 
-        AsyncStorage.getItem('counters').then((value) => {
-            const arrayOfObject = JSON.parse('[' + value + ']');
-            this.setState({
-                listViewData: arrayOfObject
-            })
-        })
+        this.getData().then((value) => {
+            if (value) {
+                const arrayOfObject = JSON.parse('[' + value + ']');
+                this.setState({
+                    listViewData: arrayOfObject
+                })
+            }
+        });
     }
+
+    getData = async () => {
+        try {
+            return await AsyncStorage.getItem('counters');
+        } catch (error) {
+            // Error retrieving data
+        }
+    };
 
     deleteRow(data) {
         const array = [...this.state.listViewData];
         array.splice(data.index, 1);
-        this.setState({listViewData: array});
+
+        AsyncStorage.setItem('counters', JSON.stringify(array).slice(1, -1)).then(() => {
+            this.setState({listViewData: array});
+        });
     }
 
     render() {
