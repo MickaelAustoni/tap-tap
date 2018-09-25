@@ -51,6 +51,11 @@ export default class HistoryScreen extends React.Component {
         });
     }
 
+    static dateFormat(time) {
+        let date = new Date(time);
+        return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() + ', ' + date.getHours() + ':' + date.getMinutes();
+    }
+
     render() {
 
         return (
@@ -70,7 +75,7 @@ export default class HistoryScreen extends React.Component {
 
                                 <Text style={styles.textItem}> {data.item.name}</Text>
 
-                                <Text style={[styles.textItem, styles.textDate]}> {data.item.date}</Text>
+                                <Text style={[styles.textItem, styles.textDate]}> {HistoryScreen.dateFormat(data.item.date)}</Text>
 
                             </View>
 
