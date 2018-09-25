@@ -3,6 +3,7 @@ import {DigitText} from '../components/StyledText';
 import Colors from "../constants/Colors";
 import {
     Alert,
+    AsyncStorage,
     Platform,
     StyleSheet,
     Text,
@@ -10,6 +11,7 @@ import {
     View,
 } from 'react-native';
 import ButtonIcon from "../components/ButtonIcon";
+import DialogInput from "react-native-dialog-input";
 
 export default class HomeScreen extends React.Component {
     static navigationOptions = {
@@ -21,39 +23,38 @@ export default class HomeScreen extends React.Component {
         this.pad   = 3;
         this.state = {
             counter: '0000',
-            disabledButton: true
+            disabledButton: true,
+            isDialogSave: false
         };
     }
 
-    alert = (title, message) => {
-        Alert.alert(title, message, [
+    showDialogReset = () => {
+        Alert.alert('Reset counter ?', '', [
             {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-            {text: 'OK', onPress: () => this.confirmResetCounter()},
+            {text: 'Submit', onPress: () => this.confirmReset()},
         ], {cancelable: true})
     };
 
-    resetCounter = () => {
-        if (!this.state.disabledButton) {
-            this.alert('Reset counter ?');
-        }
-    };
-
-    confirmResetCounter = () => {
+    showDialogSave = (bool) => {
         this.setState({
-            counter: '0000',
-            disabledButton: true
+            isDialogSave: bool
         })
     };
 
-    saveCounter = () => {
+    onPressReset = () => {
         if (!this.state.disabledButton) {
-            alert('Save...')
+            this.showDialogReset();
+        }
+    };
+
+    onPressSave = () => {
+        if (!this.state.disabledButton) {
+            this.showDialogSave(true)
         }
 
     };
 
     onPressCount = () => {
-
         const count       = parseInt(this.state.counter) + 1;
         const countLength = count.toString().length;
         const repeat      = (this.pad - countLength + 1 >= 0) ? this.pad - countLength + 1 : 0;
@@ -62,6 +63,39 @@ export default class HomeScreen extends React.Component {
             counter: '0'.repeat(repeat) + count,
             disabledButton: false
         })
+    };
+
+    confirmReset = () => {
+        this.setState({
+            counter: '0000',
+            disabledButton: true
+        })
+    };
+
+    confirmSave = (inputText) => {
+        if (inputText) {
+
+            const counter = {
+                name: inputText,
+                date: new Date(),
+                counter: this.state.counter
+            };
+
+            const counterStringify = JSON.stringify(counter);
+
+            AsyncStorage.getItem('counters').then((items) => {
+
+                let data = (items !== null)
+                    ? items + ',' + counterStringify
+                    : counterStringify;
+
+                AsyncStorage.setItem('counters', data).then(() => {
+                    // Hide dialog save
+                    this.showDialogSave(false);
+                });
+
+            });
+        }
     };
 
 
@@ -89,7 +123,7 @@ export default class HomeScreen extends React.Component {
                         <ButtonIcon
                             name='clear'
                             color={Colors.tabIconDefault}
-                            onPress={this.resetCounter} size={36}
+                            onPress={this.onPressReset} size={36}
                             disabled={this.state.disabledButton}/>
 
                     </View>
@@ -99,13 +133,25 @@ export default class HomeScreen extends React.Component {
                         <ButtonIcon
                             name='save'
                             color={Colors.tabIconDefault}
-                            onPress={this.saveCounter}
+                            onPress={this.onPressSave}
                             size={30}
                             disabled={this.state.disabledButton}/>
 
                     </View>
 
                 </View>
+
+                <DialogInput isDialogVisible={this.state.isDialogSave}
+                             title={"Save counter"}
+                             message={"Choose a name"}
+                             modalStyle={{backgroundColor: 'rgba(0,0,0,0.3)'}}
+                             dialogStyle={{backgroundColor: '#ccc'}}
+                             submitInput={(inputText) => {
+                                 this.confirmSave(inputText)
+                             }}
+                             closeDialog={() => {
+                                 this.showDialogSave(false)
+                             }}> </DialogInput>
 
             </View>
 

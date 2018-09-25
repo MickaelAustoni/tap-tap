@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {AsyncStorage, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {SwipeListView} from 'react-native-swipe-list-view';
 import Colors from "../constants/Colors";
 import {DigitText} from "../components/StyledText";
@@ -21,26 +21,19 @@ export default class HistoryScreen extends React.Component {
 
         super(props);
         this.state = {
-            listViewData: [{
-                id: 1,
-                name: 'Soirée oppening',
-                date: '01/02/2018',
-                counter: 589
-            }, {
-                id: 2,
-                name: 'Soirée closing',
-                date: '03/04/2018',
-                counter: 1190
-            }],
+            listViewData: []
         };
+
+        AsyncStorage.getItem('counters').then((value) => {
+            const arrayOfObject = JSON.parse('[' + value + ']');
+            this.setState({
+                listViewData: arrayOfObject
+            })
+        })
     }
 
-    /**
-     *
-     * @param data
-     */
     deleteRow(data) {
-        const array = [...this.state.listViewData]; // make a separate copy of the array
+        const array = [...this.state.listViewData];
         array.splice(data.index, 1);
         this.setState({listViewData: array});
     }
