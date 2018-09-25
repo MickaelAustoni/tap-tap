@@ -70,12 +70,9 @@ export default class HomeScreen extends React.Component {
 
             <View style={styles.container}>
 
-                /* Timer */
-
                 <TouchableOpacity onPress={this.onPressCount} activeOpacity={1} style={styles.TouchableOpacity}>
 
                     <Text style={styles.textIntro}>Tap to count</Text>
-
 
                     <View style={styles.digitContainer}>
 
@@ -84,9 +81,6 @@ export default class HomeScreen extends React.Component {
                     </View>
 
                 </TouchableOpacity>
-
-
-                /* Bottom button */
 
                 <View style={styles.tabBarInfoContainer}>
 
@@ -115,9 +109,7 @@ export default class HomeScreen extends React.Component {
 
             </View>
 
-
-        )
-            ;
+        );
     }
 }
 
