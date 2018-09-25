@@ -26,10 +26,6 @@ export default class HomeScreen extends React.Component {
             disabledButton: true,
             isDialogSave: false
         };
-
-        /*        AsyncStorage.setItem('counters', '').then(() => {
-         console.log('reset data');
-         });*/
     }
 
     showDialogReset = () => {
