@@ -7,7 +7,7 @@ import {AsyncStorage, StyleSheet, Text, TouchableOpacity, View} from 'react-nati
 
 export default class HistoryScreen extends React.Component {
     static navigationOptions = {
-        title: 'History',
+        title: 'My counter',
         headerStyle: {
             backgroundColor: Colors.backColor,
             borderBottomColor: Colors.greyMid
@@ -85,7 +85,6 @@ export default class HistoryScreen extends React.Component {
                         </View>
                     )}
                     renderHiddenItem={(data, rowMap) => (
-
 
                         <TouchableOpacity onPress={() => this.deleteRow(data)} style={styles.rowBack}>
 
