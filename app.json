@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "cand",
-    "description": "A very interesting project.",
-    "slug": "cand",
+    "name": "TapTap",
+    "description": "Touch your mobile to count.",
+    "slug": "taptap",
     "privacy": "public",
     "sdkVersion": "30.0.0",
     "platforms": ["ios", "android"],
@@ -21,7 +21,11 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.taptap",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.taptap"
     }
   }
 }
