@@ -24,22 +24,23 @@ export default class HistoryScreen extends React.Component {
             listViewData: []
         };
 
-        this.getData().then((value) => {
+        this.getData();
+
+        this.props.navigation.addListener('didFocus', () => this.getData());
+
+    }
+
+    getData = () => {
+        AsyncStorage.getItem('counters').then((value) => {
             if (value) {
                 const arrayOfObject = JSON.parse('[' + value + ']');
                 this.setState({
                     listViewData: arrayOfObject
                 })
             }
-        });
-    }
-
-    getData = async () => {
-        try {
-            return await AsyncStorage.getItem('counters');
-        } catch (error) {
-            // Error retrieving data
-        }
+        }).catch(() => {
+            //error
+        })
     };
 
     deleteRow(data) {
