@@ -24,10 +24,7 @@ export default class HistoryScreen extends React.Component {
             listViewData: []
         };
 
-        this.getData();
-
         this.props.navigation.addListener('didFocus', () => this.getData());
-
     }
 
     getData = () => {
