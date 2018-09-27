@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppLoading, Asset, Font, Icon} from 'expo';
+import {AppLoading, Font, Icon} from 'expo';
 import AppNavigator from './navigation/AppNavigator';
 import {Platform, StatusBar, StyleSheet, View} from 'react-native';
 import Colors from "./constants/Colors";
