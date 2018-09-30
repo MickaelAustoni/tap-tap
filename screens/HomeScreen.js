@@ -2,6 +2,7 @@ import React from 'react';
 import {Alert, AsyncStorage, Platform, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 import {DigitText} from '../components/StyledText';
 import Colors from "../constants/Colors";
+import Layout from "../constants/Layout";
 import ButtonIcon from "../components/ButtonIcon";
 import DialogInput from "react-native-dialog-input";
 import i18n from './../translations/i18n';
@@ -113,7 +114,7 @@ export default class HomeScreen extends React.Component {
 
                 <View style={styles.tabBarInfoContainer}>
 
-                    <View style={styles.buttonButton}>
+                    <View>
 
                         <ButtonIcon
                             name='clear'
@@ -123,7 +124,7 @@ export default class HomeScreen extends React.Component {
 
                     </View>
 
-                    <View style={styles.buttonButton}>
+                    <View>
 
                         <ButtonIcon
                             name='save'
@@ -185,28 +186,11 @@ const styles = StyleSheet.create({
     tabBarInfoContainer: {
         position: 'absolute',
         bottom: 0,
-        left: 0,
-        right: 0,
+        width: 40,
+        left: (Layout.window.width / 2) - (40 / 2),
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 20,
-        flex: 1,
         flexDirection: 'column',
-        ...Platform.select({
-            ios: {
-                shadowColor: 'black',
-                shadowOffset: {height: -3},
-                shadowOpacity: 0.1,
-                shadowRadius: 3,
-            },
-            android: {
-                elevation: 20,
-            },
-        }),
-    },
-    buttonButton: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
     }
 });
