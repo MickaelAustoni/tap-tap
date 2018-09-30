@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert, AsyncStorage, Platform, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
+import {Alert, AsyncStorage, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 import {DigitText} from '../components/StyledText';
 import Colors from "../constants/Colors";
 import Layout from "../constants/Layout";

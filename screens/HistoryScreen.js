@@ -1,14 +1,15 @@
 import React from 'react';
+import {AsyncStorage, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {SwipeListView} from 'react-native-swipe-list-view';
 import Colors from "../constants/Colors";
 import {DigitText} from "../components/StyledText";
 import {Icon} from "expo";
-import {AsyncStorage, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import i18n from './../translations/i18n';
 
 
 export default class HistoryScreen extends React.Component {
-    static navigationOptions = {
-        title: 'My counter',
+    static navigationOptions = () => ({
+        title: i18n.t('tab_history'),
         headerStyle: {
             backgroundColor: Colors.backColor,
             borderBottomColor: Colors.greyMid
@@ -16,7 +17,7 @@ export default class HistoryScreen extends React.Component {
         headerTitleStyle: {
             color: Colors.primaryColor
         }
-    };
+    });
 
     constructor(props) {
         super(props);
