@@ -1,0 +1,10 @@
+{
+  "title": "Tap to count",
+  "tab_counter": "Counter",
+  "tab_history": "My counters",
+  "ask_reset": "Reset counter ?",
+  "cancel": "Cancel",
+  "submit": "Submit",
+  "save_title": "Save counter",
+  "save_message": "Choose a name"
+}

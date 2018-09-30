@@ -5,6 +5,7 @@ import {DigitText} from "../components/StyledText";
 import {Icon} from "expo";
 import {AsyncStorage, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
+
 export default class HistoryScreen extends React.Component {
     static navigationOptions = {
         title: 'My counter',
@@ -18,12 +19,13 @@ export default class HistoryScreen extends React.Component {
     };
 
     constructor(props) {
-
         super(props);
         this.state = {
             listViewData: []
         };
+    }
 
+    componentDidMount() {
         this.props.navigation.addListener('didFocus', () => this.getData());
     }
 

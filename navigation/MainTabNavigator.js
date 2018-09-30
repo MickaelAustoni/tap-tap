@@ -4,6 +4,8 @@ import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
 import HistoryScreen from '../screens/HistoryScreen';
 import Colors from "../constants/Colors";
+import i18n from './../translations/i18n';
+
 
 /**
  * Home stack
@@ -32,8 +34,8 @@ const options = {
     },
 };
 
-HomeStack.navigationOptions = {
-    tabBarLabel: 'Counter',
+HomeStack.navigationOptions = () => ({
+    tabBarLabel: i18n.t('tab_counter'),
     tabBarIcon: ({focused}) => (
         <TabBarIcon
             focused={focused}
@@ -41,11 +43,11 @@ HomeStack.navigationOptions = {
         />
     ),
     tabBarOptions: options
-};
+});
 
 
-HistoryStack.navigationOptions = {
-    tabBarLabel: 'My counter',
+HistoryStack.navigationOptions = () => ({
+    tabBarLabel: i18n.t('tab_history'),
     tabBarIcon: ({focused}) => (
         <TabBarIcon
             focused={focused}
@@ -53,7 +55,7 @@ HistoryStack.navigationOptions = {
         />
     ),
     tabBarOptions: options
-};
+});
 
 export default createBottomTabNavigator({
     HomeStack,

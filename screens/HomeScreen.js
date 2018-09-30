@@ -1,21 +1,16 @@
 import React from 'react';
+import {Alert, AsyncStorage, Platform, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 import {DigitText} from '../components/StyledText';
 import Colors from "../constants/Colors";
 import ButtonIcon from "../components/ButtonIcon";
 import DialogInput from "react-native-dialog-input";
-import {
-    Alert,
-    AsyncStorage,
-    Platform,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-} from 'react-native';
+import i18n from './../translations/i18n';
+
 
 export default class HomeScreen extends React.Component {
     static navigationOptions = {
         header: null,
+        tabBarLabel: i18n.t('tabCounter'),
     };
 
     constructor(props) {
@@ -29,9 +24,9 @@ export default class HomeScreen extends React.Component {
     }
 
     showDialogReset = () => {
-        Alert.alert('Reset counter ?', '', [
-            {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-            {text: 'Submit', onPress: () => this.confirmReset()},
+        Alert.alert(i18n.t('ask_reset'), '', [
+            {text: i18n.t('cancel'), onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+            {text: i18n.t('submit'), onPress: () => this.confirmReset()},
         ], {cancelable: true})
     };
 
@@ -106,7 +101,7 @@ export default class HomeScreen extends React.Component {
 
                 <TouchableOpacity onPress={this.onPressCount} activeOpacity={1} style={styles.TouchableOpacity}>
 
-                    <Text style={styles.textIntro}>Tap to count</Text>
+                    <Text style={styles.textIntro}>{i18n.t('title')}</Text>
 
                     <View style={styles.digitContainer}>
 
@@ -142,8 +137,10 @@ export default class HomeScreen extends React.Component {
                 </View>
 
                 <DialogInput isDialogVisible={this.state.isDialogSave}
-                             title={"Save counter"}
-                             message={"Choose a name"}
+                             title={i18n.t('save_title')}
+                             message={i18n.t('save_message')}
+                             cancelText={i18n.t('cancel')}
+                             submitText={i18n.t('submit')}
                              modalStyle={{backgroundColor: 'rgba(0,0,0,0.3)'}}
                              dialogStyle={{backgroundColor: '#ccc'}}
                              submitInput={(inputText) => {
