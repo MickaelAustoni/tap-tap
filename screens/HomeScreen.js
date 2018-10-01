@@ -112,10 +112,6 @@ export default class HomeScreen extends React.Component {
 
                     </View>
 
-                </TouchableOpacity>
-
-                <View style={styles.tabBarInfoContainer}>
-
                     <View style={styles.groupButton}>
 
                         <View style={styles.itemButton}>
@@ -141,14 +137,19 @@ export default class HomeScreen extends React.Component {
 
                     </View>
 
+
+                </TouchableOpacity>
+
+                <View style={styles.bannerAd}>
+
                     <AdMobBanner
                         bannerSize="fullBanner"
                         adUnitID={BANNER_ID}
-                        testDeviceID="EMULATOR"
                         didFailToReceiveAdWithError={this.bannerError}
                     />
 
                 </View>
+
 
                 <DialogInput isDialogVisible={this.state.isDialogSave}
                              title={i18n.t('save_title')}
@@ -197,19 +198,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flex: 1
     },
-    tabBarInfoContainer: {
+    bannerAd: {
         position: 'absolute',
         left: 0,
         bottom: 0,
-
     },
     groupButton: {
-        flex: 1,
+        position: 'absolute',
+        bottom: 85,
+        left: (Layout.window.width / 2) - 50,
         flexDirection: 'row',
         width: 100,
-        height: 40,
-        left: (Layout.window.width / 2) - 50,
-        marginBottom: 20
+        height: 40
     },
     itemButton: {
         alignItems: 'center',
