@@ -6,7 +6,10 @@ import Layout from "../constants/Layout";
 import ButtonIcon from "../components/ButtonIcon";
 import DialogInput from "react-native-dialog-input";
 import i18n from './../translations/i18n';
+import {AdMobBanner} from "expo";
 
+const PAD       = 3;
+const BANNER_ID = `ca-app-pub-1425926517331745/4139536433`;
 
 export default class HomeScreen extends React.Component {
     static navigationOptions = {
@@ -16,7 +19,6 @@ export default class HomeScreen extends React.Component {
 
     constructor(props) {
         super(props);
-        this.pad   = 3;
         this.state = {
             counter: '0000',
             disabledButton: true,
@@ -53,7 +55,7 @@ export default class HomeScreen extends React.Component {
     onPressCount = () => {
         const count       = parseInt(this.state.counter) + 1;
         const countLength = count.toString().length;
-        const repeat      = (this.pad - countLength + 1 >= 0) ? this.pad - countLength + 1 : 0;
+        const repeat      = (PAD - countLength + 1 >= 0) ? PAD - countLength + 1 : 0;
 
         this.setState({
             counter: '0'.repeat(repeat) + count,
@@ -114,26 +116,37 @@ export default class HomeScreen extends React.Component {
 
                 <View style={styles.tabBarInfoContainer}>
 
-                    <View>
+                    <View style={styles.groupButton}>
 
-                        <ButtonIcon
-                            name='clear'
-                            color={Colors.tabIconDefault}
-                            onPress={this.onPressReset} size={36}
-                            disabled={this.state.disabledButton}/>
+                        <View style={styles.itemButton}>
+
+                            <ButtonIcon
+                                name='clear'
+                                color={Colors.tabIconDefault}
+                                onPress={this.onPressReset} size={36}
+                                disabled={this.state.disabledButton}/>
+
+                        </View>
+
+                        <View style={styles.itemButton}>
+
+                            <ButtonIcon
+                                name='save'
+                                color={Colors.tabIconDefault}
+                                onPress={this.onPressSave}
+                                size={30}
+                                disabled={this.state.disabledButton}/>
+
+                        </View>
 
                     </View>
 
-                    <View>
-
-                        <ButtonIcon
-                            name='save'
-                            color={Colors.tabIconDefault}
-                            onPress={this.onPressSave}
-                            size={30}
-                            disabled={this.state.disabledButton}/>
-
-                    </View>
+                    <AdMobBanner
+                        bannerSize="fullBanner"
+                        adUnitID={BANNER_ID}
+                        testDeviceID="EMULATOR"
+                        didFailToReceiveAdWithError={this.bannerError}
+                    />
 
                 </View>
 
@@ -153,7 +166,8 @@ export default class HomeScreen extends React.Component {
 
             </View>
 
-        );
+        )
+            ;
     }
 }
 
@@ -185,12 +199,22 @@ const styles = StyleSheet.create({
     },
     tabBarInfoContainer: {
         position: 'absolute',
+        left: 0,
         bottom: 0,
-        width: 40,
-        left: (Layout.window.width / 2) - (40 / 2),
+
+    },
+    groupButton: {
+        flex: 1,
+        flexDirection: 'row',
+        width: 100,
+        height: 40,
+        left: (Layout.window.width / 2) - 50,
+        marginBottom: 20
+    },
+    itemButton: {
         alignItems: 'center',
         justifyContent: 'center',
-        paddingVertical: 20,
-        flexDirection: 'column',
+        width: 30,
+        marginHorizontal: 10
     }
 });
