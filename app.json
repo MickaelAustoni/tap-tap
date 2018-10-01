@@ -28,7 +28,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.taptap"
+      "package": "com.counter.taptap"
     }
   }
 }
