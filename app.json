@@ -24,7 +24,7 @@
       "**/*"
     ],
     "ios": {
-      "bundleIdentifier": "com.taptap",
+      "bundleIdentifier": "com.counter.taptap",
       "supportsTablet": true
     },
     "android": {
