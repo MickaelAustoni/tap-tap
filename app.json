@@ -28,7 +28,13 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.counter.taptap"
+      "package": "com.counter.taptap",
+      "permissions": [
+        "READ_PHONE_STATE",
+        "READ_CONTACTS",
+        "RECORD_AUDIO",
+        "CAMERA"
+      ]
     }
   }
 }
