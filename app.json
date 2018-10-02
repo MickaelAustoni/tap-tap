@@ -30,10 +30,7 @@
     "android": {
       "package": "com.counter.taptap",
       "permissions": [
-        "READ_PHONE_STATE",
-        "READ_CONTACTS",
-        "RECORD_AUDIO",
-        "CAMERA"
+        "READ_PHONE_STATE"
       ]
     }
   }
